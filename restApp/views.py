@@ -50,7 +50,7 @@ class studentDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.D
     def delete(self, request, pk):
         return self.destroy(request, pk)
 
-
+'''
 # class based views - REST APIView
 class Employees(APIView):
     def get(self, request):
@@ -64,6 +64,15 @@ class Employees(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+'''   
     
-    
-        
+# using generics operations get and create
+class Employees(generics.ListCreateAPIView):
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer
+
+# using generics operations retrieve, update and delete
+class EmployeeDetails(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer
+    lookup_field = 'pk'

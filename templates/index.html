@@ -20,5 +20,14 @@
         {% endfor %}
             
     </div>
+
+    <div style="margin: 50px;">
+        <h1>Employee List</h1>
+        
+        {% for em in employees %}
+            <a href="{% url 'EmployeeDetails' em.id %}">{{em.employee_id}} - {{em.name}}</a><br>
+        {% endfor %}
+            
+    </div>
 </body>
 </html>
