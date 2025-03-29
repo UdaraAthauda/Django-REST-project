@@ -11,5 +11,14 @@
         <a href="{% url 'students' %}">students</a><br>
         <a href="{% url 'employee' %}">employee</a>
     </div>
+
+    <div style="margin: 50px;">
+        <h1>Student List</h1>
+        
+        {% for st in students %}
+            <a href="{% url 'studentDetail' st.id %}">{{st.student_id}} - {{st.name}}</a><br>
+        {% endfor %}
+            
+    </div>
 </body>
 </html>
