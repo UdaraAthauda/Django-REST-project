@@ -17,4 +17,18 @@ class Employee(models.Model):
 
     def __str__(self):
         return f"{self.employee_id} - {self.name}"
+    
+class Blog(models.Model):
+    blog_title = models.CharField(max_length=100)
+    blog_content = models.TextField()
+
+    def __str__(self):
+        return self.blog_title
+
+class Comment(models.Model):
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='comments')
+    comment = models.TextField()
+
+    def __str__(self):
+        return self.blog.blog_title
 
