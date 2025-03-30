@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework import mixins, generics, viewsets
+from rest_framework.filters import SearchFilter
 
 # Create your views here.
 
@@ -29,6 +30,8 @@ def index(request):
 class studentView(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
+    filter_backends = [SearchFilter]
+    search_fields = ['student_id', 'name', 'branch']
     
     def get(self, request):
         return self.list(request)
@@ -70,6 +73,8 @@ class Employees(APIView):
 class Employees(generics.ListCreateAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
+    filter_backends = [SearchFilter]
+    search_fields = ['employee_id', 'name', 'designation']
 
 # using generics operations retrieve, update and delete
 class EmployeeDetails(generics.RetrieveUpdateDestroyAPIView):
@@ -82,7 +87,11 @@ class EmployeeDetails(generics.RetrieveUpdateDestroyAPIView):
 class CommentView(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+    filter_backends = [SearchFilter]
+    search_fields = ['comment', 'blog__id']
 
 class BlogView(viewsets.ModelViewSet):
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer 
+    filter_backends = [SearchFilter]
+    search_fields = ['blog_title', 'blog_content']
