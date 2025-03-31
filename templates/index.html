@@ -6,13 +6,20 @@
     <title>Index</title>
 </head>
 <body>
-    <div style="margin: 50px;">
-        <h1>Links</h1>
-        <a href="{% url 'students' %}">students</a><br>
-        <a href="{% url 'employee' %}">employee</a><br>
-        <a href="comments">comments</a><br>
-        <a href="blogs">blogs</a>
+    <div style="margin: 50px; display: flex; justify-content: space-evenly; align-items: center;">
+        <div>
+            <h1>Links</h1>
+            <a href="{% url 'students' %}">students</a><br>
+            <a href="{% url 'employee' %}">employee</a><br>
+            <a href="comments">comments</a><br>
+            <a href="blogs">blogs</a>
+        </div>
+        
+        <div>
+            <a href="products">products</a>
+        </div>
     </div>
+    
 
     <div style="margin: 50px;">
         <h1>Student List</h1>
